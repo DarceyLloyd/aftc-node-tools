@@ -1,0 +1,22 @@
+{
+  "name": "aftc-node-tools",
+  "version": "0.1.0",
+  "description": "",
+  "main": "aftc-node-tools.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DarceyLloyd/aftc-node-tools.git"
+  },
+  "author": "darcey@aftc.io",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DarceyLloyd/aftc-node-tools/issues"
+  },
+  "homepage": "https://github.com/DarceyLloyd/aftc-node-tools#readme",
+  "dependencies": {
+    "fs-extra": "^8.1.0"
+  }
+}
