@@ -276,16 +276,12 @@ function removeSync(path,silent=true){
 
 
 
-function checkFileExistsSync(filePath, checkDelay = 0, failAfter = 4, silent = true) {
+async function checkFileExistsSync(filePath, delay = 0, failAfter = 4, silent = true) {
     let t = 0;
-    let limit = checkDelay + failAfter;
+    let limit = delay + failAfter;
 
     if (!silent) {
-        log(`aftc-node-utils: checkFileExistsSync():
-    File [${filePath}]
-    checkDelay:[${checkDelay}]
-    failAfter:[${failAfter}]
-    silent:[${silent}]`, "cyan");
+        log(`aftc-node-utils: checkFileExistsSync(): File [${filePath}], delay:[${delay}], failAfter:[${failAfter}], silent:[${silent}]`, "cyan");
     }
 
     return promise = new Promise((resolve, reject) => {
@@ -304,7 +300,7 @@ function checkFileExistsSync(filePath, checkDelay = 0, failAfter = 4, silent = t
             }
 
             // Optional check delay
-            if (t > checkDelay) {
+            if (t > delay) {
                 
                 fs.pathExists(filePath, (err, exists) => {
                     if (err){
@@ -340,7 +336,7 @@ function checkFileExistsSync(filePath, checkDelay = 0, failAfter = 4, silent = t
 
 
 
-function getFileContentsBetweenMarkersSync(filePath,startMarker,endMarker,silent=true,showLinesAdded=false) {
+async function getFileContentsBetweenMarkersSync(filePath,startMarker,endMarker,silent=true,showLinesAdded=false) {
     if (!silent){
         log(`getFileContentsBetweenMarkersSync(
         filePath:${filePath},
