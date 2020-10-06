@@ -21,7 +21,7 @@ const log = function () {
         }
     }
 
-    if (arguments) {
+    if (arguments.length > 0) {
         // console.log("arguments.length = " + arguments.length);
         if (arguments.length > 1) {
             let a = {};
@@ -37,7 +37,7 @@ const log = function () {
             console.log(arguments[0]);
         }
     } else {
-        console.log(col.red("NOTHING TO LOG"));
+        console.log();
     }
 
 }
