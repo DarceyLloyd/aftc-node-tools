@@ -1,5 +1,7 @@
 const debug = require("./src/debug");
 const string = require("./src/string");
+const math = require("./src/math");
+const random = require("./src/random");
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 module.exports = {
@@ -25,6 +27,14 @@ module.exports = {
     rTrim:string.rTrim,
     trimStringBy:string.trimStringBy,
     cutStringBy:string.cutStringBy,
-    ucFirst:string.ucFirst
+    ucFirst:string.ucFirst,
+    isEven:math.isEven,
+    isOdd:math.isOdd,
+    roundTo:math.roundTo,
+    getRandomBoolean:random.getRandomBoolean,
+    getRandomFloat:random.getRandomFloat,
+    getRandomInt:random.getRandomInt,
+    getRandomThatsNot:random.getRandomThatsNot,
+    getWeightedRandom:random.getWeightedRandom
 };
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

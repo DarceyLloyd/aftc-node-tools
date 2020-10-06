@@ -44,6 +44,12 @@ const log = function () {
 // - - - - - - - - - - - - - - -
 
 const cls = function () {
+    if ("aftcLogEnabled" in global) {
+        if (global.aftcLogEnabled === false) {
+            return;
+        }
+    }
+
     console.clear();
 }
 // - - - - - - - - - - - - - - -
