@@ -28,10 +28,10 @@ log('All For The Code'.trap.bgRed.white);
 ```
 
 
-### getFilesSync(dir, suffix, relative = true, includeHiddenFiles = false, recurse = false)
+### getFilesSync(dir, ext, relative = true, includeHiddenFiles = false, recurse = false)
 ```
 let dir = "./";
-let suffix = "*.*";
+let ext = "*"; // * || .js || .jpg || etc etc etc
 // getFilesSync(dir, ext = "*", relative = true, includeHidden = false, recurse = false)
 let files = getFilesSync("./", "*", true, false, true)
 console.log(files);
