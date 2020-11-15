@@ -84,7 +84,9 @@ function getFilesSync(dir, ext = "*", relative = true, includeHidden = false, re
         let fileName = dirRead[i];
         let fullPath = path.resolve(realDir + '/' + fileName);
         let relPath = dir + "/" + fileName;
-        relPath = relPath.replace("//","/");
+        // // relPath = relPath.replace("//","/"); // replaces single occurance
+        relPath = relPath.replace(/\/\//g, "/"); // replaces all occurances of // to /
+        relPath = relPath.replace(/\\/g, "/"); // replaces all occurances of \\ to /
         // log(fileName);
 
         if (isDir(fullPath)) {
