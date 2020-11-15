@@ -1,4 +1,4 @@
-const log = require('debug').log;
+const log = require('./debug').log;
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 const cutStringTo = function (s, len) {

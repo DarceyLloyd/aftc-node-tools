@@ -1,6 +1,6 @@
 {
   "name": "aftc-node-tools",
-  "version": "0.5.1",
+  "version": "0.6.0",
   "description": "",
   "main": "aftc-node-tools.js",
   "scripts": {
@@ -17,6 +17,9 @@
   },
   "homepage": "https://github.com/DarceyLloyd/aftc-node-tools#readme",
   "dependencies": {
-    "fs-extra": "^8.1.0"
+    "fs-extra": "^8.1.0",
+    "colors": "^1.4.0"
+  },
+  "devDependencies": {
   }
 }

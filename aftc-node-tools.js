@@ -2,12 +2,14 @@ const debug = require("./src/debug");
 const string = require("./src/string");
 const math = require("./src/math");
 const random = require("./src/random");
+const io = require("./src/io");
+const { isFile, isDir, getFilesSync } = require("./src/io");
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 module.exports = {
-    log: debug.log,
     enableLog: debug.enableLog,
     disableLog: debug.disableLog,
+    log: debug.log,
     cls: debug.cls,
     clear: debug.cls,
     cutStringTo:string.cutStringTo,
@@ -35,6 +37,9 @@ module.exports = {
     getRandomFloat:random.getRandomFloat,
     getRandomInt:random.getRandomInt,
     getRandomThatsNot:random.getRandomThatsNot,
-    getWeightedRandom:random.getWeightedRandom
+    getWeightedRandom:random.getWeightedRandom,
+    isFile:io.isFile,
+    isDir:io.isDir,
+    getFilesSync:io.getFilesSync
 };
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

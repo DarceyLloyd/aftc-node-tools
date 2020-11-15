@@ -1,3 +1,6 @@
+const log = require('./debug').log;
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 exports.getRandomBoolean = function() {
     return Math.random() >= 0.5;
 }

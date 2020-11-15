@@ -1,3 +1,6 @@
+const log = require('./debug').log;
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 exports.isEven = function(n) {
     return n % 2 === 0;
 }

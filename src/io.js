@@ -1,8 +1,139 @@
-const fs = require('fs-extra');
-const path = require('path');
-const util = require('util');
-const log = require('debug').log;
+// const fs = require('fs-extra');
+// const path = require('path');
+// const util = require('util');
 
+const fs = require('fs');
+const path = require('path');
+
+const aftc = require("./debug");
+const cls = aftc.cls;
+const log = aftc.log;
+
+
+
+// exports.getFilesSync = function (dir) {
+
+//     let a = 4;
+//     let fileList = [];
+//     let realDir = path.resolve(dir);
+
+//     var dirRead = fs.readdirSync(dir);
+//     for (var i in dirRead) {
+//         log(i);
+//     }
+
+
+//     // fs.readdir(realDir, (err, entries) => {
+//     //     if (err) throw err;
+
+//     //     for (const entry of entries) {
+//     //         // Do not process files that start with .
+//     //         if (entry[0] != ".") {
+//     //             let fullPath = path.join(realDir, entry); // Probably less load than resolve
+//     //             // let fullPath = path.resolve(dir, entry);
+//     //             log(fullPath);
+//     //             fileList.push("abc");
+//     //             // log(fileList.length);
+//     //         }
+
+
+//     //         // let fullPath = dir + "/" + entry;
+//     //         // console.log("Checking: " + fullPath);
+//     //         // log(fullPath);
+//     //         // if (isDir(fullPath)) {
+//     //         //     console.log(fullPath)
+//     //         //     list(fullPath);
+//     //         // } else {
+//     //         //     log(fullPath);
+//     //         // }
+//     //     }
+//     // });
+
+//     return fileList;
+// }
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+
+function isFile(path) {
+    var stats = fs.statSync(path);
+    return stats.isFile();
+}
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+function isDir(path) {
+    var stats = fs.statSync(path);
+    return stats.isDirectory();
+}
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+
+function getFilesSync(dir, ext = "*", includeHidden = false, recurse = false) {
+
+    // WARNING: fs.readdir(realDir, (err, entries) => {});
+    // You will be unable to push to array outside of this function due to the way node works
+
+    ext = ext.toLowerCase();
+
+    let files = [];
+    let realDir = path.resolve(dir);
+    var dirRead = fs.readdirSync(realDir);
+
+    for (let i in dirRead) {
+        let fileName = dirRead[i];
+        let fullPath = path.resolve(realDir + '/' + dirRead[i]);
+        // log(fileName);
+
+        if (isDir(fullPath)) {
+            if (recurse == true) {
+                let processDir = true;
+                if (fileName[0] == ".") {
+                    if (!includeHidden) {
+                        processDir = false;
+                    }
+                }
+
+                if (processDir) {
+                    let recursionRead = getFilesSync(fullPath, ext, includeHidden, recurse);
+                    files = files.concat(recursionRead);
+                }
+
+            }
+        } else {
+            // log("FILE: " + fileName);
+            // log("includeHidden = " + includeHidden);
+
+            let hiddenFileAllwed = true;
+            if (fileName[0] == ".") {
+                if (includeHidden === false) {
+                    hiddenFileAllwed = false;
+                }
+            }
+
+            let extAllowed = false;
+            let fileExtension = path.extname(fileName)
+            // log("fileExtension = " + fileExtension);
+            if (ext === "*" || ext === "*.*" || ext === fileExtension) {
+                extAllowed = true;
+            }
+
+            if (hiddenFileAllwed && extAllowed) {
+                files.push(fullPath);
+            }
+        }
+
+    }
+    return files;
+}
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+module.exports = {
+    getFilesSync,
+    isDir,
+    isFile
+}
 
 
 // const isFile = function(pathItem) {
@@ -72,30 +203,6 @@ const log = require('debug').log;
 
 
 
-
-// function getFilesSync(dir, suffix, recurse = true) {
-//     // log("reading: " + dir);
-//     let files = [];
-//     var dirRead = fs.readdirSync(dir);
-//     for (var i in dirRead) {
-//         var fileName = dir + '/' + dirRead[i];
-//         if (fs.statSync(fileName).isDirectory()) {
-//             if (recurse == true) {
-//                 let recursionRead = getFilesSync(fileName, suffix);
-//                 // log("ADDING: " + recursionRead.length + " files");
-//                 files = files.concat(recursionRead);
-//             }
-//         } else {
-//             if (fileName.indexOf(suffix) > -1) {
-//                 files.push(fileName);
-//             } else {
-
-//             }
-//         }
-//     }
-//     return files;
-// }
-// // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
 
