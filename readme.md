@@ -36,3 +36,12 @@ let suffix = "*.*";
 let files = getFilesSync("./", "*", true, false, true)
 console.log(files);
 ```
+
+
+### writeFileSync(path, data, onComplete = false) 
+```
+function onCompleteFunction(){
+    console.log("file created!");
+}
+aftc.writeFileSync("./io.json",JSON.stringify(filesArray),onCompleteFunction);
+```

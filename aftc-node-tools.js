@@ -40,6 +40,7 @@ module.exports = {
     getWeightedRandom:random.getWeightedRandom,
     isFile:io.isFile,
     isDir:io.isDir,
-    getFilesSync:io.getFilesSync
+    getFilesSync:io.getFilesSync,
+    writeFileSync:io.writeFileSync
 };
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

@@ -123,12 +123,12 @@ function getFilesSync(dir, ext = "*", relative = true, includeHidden = false, re
             }
 
             if (hiddenFileAllwed && extAllowed) {
-                if (relative){
+                if (relative) {
                     files.push(relPath);
                 } else {
                     files.push(fullPath);
                 }
-                
+
             }
         }
 
@@ -138,8 +138,21 @@ function getFilesSync(dir, ext = "*", relative = true, includeHidden = false, re
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
+
+function writeFileSync(path, data, onComplete = false) {
+    fs.writeFile(path, data, function (err) {
+        if (err) throw err;
+        if (onComplete) {
+            onComplete();
+        }
+    });
+}
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
 module.exports = {
     getFilesSync,
+    writeFileSync,
     isDir,
     isFile
 }
