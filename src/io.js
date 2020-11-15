@@ -69,7 +69,7 @@ function isDir(path) {
 
 
 
-function getFilesSync(dir, ext = "*", includeHidden = false, recurse = false) {
+function getFilesSync(dir, ext = "*", relative = true, includeHidden = false, recurse = false) {
 
     // WARNING: fs.readdir(realDir, (err, entries) => {});
     // You will be unable to push to array outside of this function due to the way node works
@@ -82,7 +82,9 @@ function getFilesSync(dir, ext = "*", includeHidden = false, recurse = false) {
 
     for (let i in dirRead) {
         let fileName = dirRead[i];
-        let fullPath = path.resolve(realDir + '/' + dirRead[i]);
+        let fullPath = path.resolve(realDir + '/' + fileName);
+        let relPath = dir + "/" + fileName;
+        relPath = relPath.replace("//","/");
         // log(fileName);
 
         if (isDir(fullPath)) {
@@ -95,7 +97,7 @@ function getFilesSync(dir, ext = "*", includeHidden = false, recurse = false) {
                 }
 
                 if (processDir) {
-                    let recursionRead = getFilesSync(fullPath, ext, includeHidden, recurse);
+                    let recursionRead = getFilesSync(relPath, ext, relative, includeHidden, recurse);
                     files = files.concat(recursionRead);
                 }
 
@@ -119,7 +121,12 @@ function getFilesSync(dir, ext = "*", includeHidden = false, recurse = false) {
             }
 
             if (hiddenFileAllwed && extAllowed) {
-                files.push(fullPath);
+                if (relative){
+                    files.push(relPath);
+                } else {
+                    files.push(fullPath);
+                }
+                
             }
         }
 

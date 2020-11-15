@@ -5,8 +5,8 @@ const getFilesSync = aftc.getFilesSync;
 
 cls();
 
-// getFilesSync(dir, ext="*", includeHidden = false, recurse = false) {
-let files = aftc.getFilesSync("../","*",false,true);
+// getFilesSync(dir, ext="*", relative = true, includeHidden = false, recurse = false) {
+let files = aftc.getFilesSync("../", "*", true, false, true);
 
 log("aftc.io.getFilesSync".green);
 log(files);
