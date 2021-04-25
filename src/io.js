@@ -69,68 +69,55 @@ function isDir(path) {
 
 
 
-function getFilesSync(dir, ext = "*", relative = true, includeHidden = false, recurse = false) {
 
-    // WARNING: fs.readdir(realDir, (err, entries) => {});
-    // You will be unable to push to array outside of this function due to the way node works
+
+
+function getFilesSync(dir, ext = "*", recurse = false, includeHidden = false) {
 
     ext = ext.toLowerCase();
 
     let files = [];
-    let realDir = path.resolve(dir);
-    var dirRead = fs.readdirSync(realDir);
+    let rootDir = path.resolve(dir);
+    var dirRead = fs.readdirSync(rootDir);
 
     for (let i in dirRead) {
         let fileName = dirRead[i];
-        let fullPath = path.resolve(realDir + '/' + fileName);
-        let relPath = dir + "/" + fileName;
-        // // relPath = relPath.replace("//","/"); // replaces single occurance
-        relPath = relPath.replace(/\/\//g, "/"); // replaces all occurances of // to /
-        relPath = relPath.replace(/\\/g, "/"); // replaces all occurances of \\ to /
+        // let fullPath = path.resolve(rootDir + '/' + fileName); // not the cross platform way
+        let fullPath = path.join(rootDir, fileName);
+        // let relPath = dir + "/" + fileName;
+
+        // NOTE this is not the cross platform way
+        // // relPath = relPath.replace("//","/"); // replaces single
+        // relPath = relPath.replace(/\/\//g, "/"); // replaces all // to / (g flag)
+        // relPath = relPath.replace(/\\/g, "/"); // replaces all \\ to / (g flag)
         // log(fileName);
 
-        if (isDir(fullPath)) {
-            if (recurse == true) {
-                let processDir = true;
-                if (fileName[0] == ".") {
-                    if (!includeHidden) {
-                        processDir = false;
-                    }
-                }
 
-                if (processDir) {
-                    let recursionRead = getFilesSync(relPath, ext, relative, includeHidden, recurse);
+        let isHidden = false;
+        if (fileName[0] == ".") {
+            isHidden = true;
+        }
+
+        let processEntry = true;
+        if (isHidden && !includeHidden) {
+            processEntry = false;
+        }
+
+
+        if (processEntry) {
+            if (isDir(fullPath)) {
+                if (recurse == true) {
+                    let recursionRead = getFilesSync(fullPath, ext, recurse);
                     files = files.concat(recursionRead);
                 }
-
-            }
-        } else {
-            // log("FILE: " + fileName);
-            // log("includeHidden = " + includeHidden);
-
-            let hiddenFileAllwed = true;
-            if (fileName[0] == ".") {
-                if (includeHidden === false) {
-                    hiddenFileAllwed = false;
-                }
-            }
-
-            let extAllowed = false;
-            let fileExtension = path.extname(fileName)
-            // log("fileExtension = " + fileExtension);
-            if (ext === "*" || ext === "*.*" || ext === fileExtension) {
-                extAllowed = true;
-            }
-
-            if (hiddenFileAllwed && extAllowed) {
-                if (relative) {
-                    files.push(relPath);
-                } else {
+            } else {
+                let fileExtension = path.extname(fileName)
+                if (ext === "*" || ext === "*.*" || ext === fileExtension) {
                     files.push(fullPath);
                 }
-
             }
         }
+
 
     }
     return files;
@@ -139,22 +126,67 @@ function getFilesSync(dir, ext = "*", relative = true, includeHidden = false, re
 
 
 
-function writeFileSync(path, data, onComplete = false) {
-    fs.writeFile(path, data, function (err) {
-        if (err) throw err;
-        if (onComplete) {
-            onComplete();
+
+// async function getFiles(dir) {
+//     const subdirs = await readdir(dir);
+//     const files = await Promise.all(subdirs.map(async (subdir) => {
+//         const res = resolve(dir, subdir);
+//         return (await stat(res)).isDirectory() ? getFiles(res) : res;
+//     }));
+//     return files.reduce((a, f) => a.concat(f), []);
+// }
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+function writeFile(dir, data) {
+    fs.writeFile(dir, data, function (err) {
+        if (err) {
+            throw err;
+        } else {
+            return data
         }
     });
 }
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
+
+function promiseWriteFile(dir, data) {
+    return new Promise((resolve, reject) => {
+        fs.writeFile(dir, data, function (err) {
+            if (err) {
+                reject(err);
+                throw err;
+            } else {
+                resolve()
+            }
+        });
+    })
+}
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+
+function readFileToString(file) {
+    return fs.readFileSync(file, 'utf8');
+}
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+
+
+
+
+
+
+
 module.exports = {
-    getFilesSync,
-    writeFileSync,
+    isFile,
     isDir,
-    isFile
+    getFilesSync,
+    writeFile,
+    promiseWriteFile,
+    readFileToString,
 }
 
 

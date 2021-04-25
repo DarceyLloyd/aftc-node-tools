@@ -1,10 +1,10 @@
 {
   "name": "aftc-node-tools",
-  "version": "0.6.5",
+  "version": "0.7.0",
   "description": "",
   "main": "aftc-node-tools.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "node build"
   },
   "repository": {
     "type": "git",
@@ -17,8 +17,7 @@
   },
   "homepage": "https://github.com/DarceyLloyd/aftc-node-tools#readme",
   "dependencies": {
-    "fs-extra": "^8.1.0",
-    "colors": "^1.4.0"
-  },
-  "devDependencies": {}
+    "colors": "^1.4.0",
+    "fs-extra": "^9.1.0"
+  }
 }

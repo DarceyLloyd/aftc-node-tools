@@ -28,13 +28,15 @@ log('All For The Code'.trap.bgRed.white);
 ```
 
 
-### getFilesSync(dir, ext, relative = true, includeHiddenFiles = false, recurse = false)
+### getFilesSync(dir, ext, recurse = false, includeHiddenFiles = false)
+string: dir: "./" etc
+string: ext: * || *.* || .js || jpg || etc
+boolean: recurse: true || false (optional)
+boolean: includeHiddenFiles: true || false (optional)
 ```
-let dir = "./";
-let ext = "*"; // * || .js || .jpg || etc etc etc
-// getFilesSync(dir, ext = "*", relative = true, includeHidden = false, recurse = false)
-let files = getFilesSync("./", "*", true, false, true)
-console.log(files);
+let files1 = getFilesSync("./", "*")
+let files2 = getFilesSync("./", "*", true)
+let files3 = getFilesSync("./", "*", true, true)
 ```
 
 

@@ -15,6 +15,7 @@ const disableLog = function () {
 // - - - - - - - - - - - - - - -
 
 const log = function () {
+
     if ("aftcLogEnabled" in global) {
         if (global.aftcLogEnabled === false) {
             return;
