@@ -5,7 +5,25 @@ const path = require('path');
 
 
 
-
+// JSODOC = {
+//     "method": "concatFiles",
+//     "params": [
+//         {
+//             "name": "filesArray",
+//             "type": "Array",
+//             "required": true,
+//             "info": "Array of files."
+//         }
+//     ],
+//     "returns": {
+//         "type": "String"
+//     },
+//     "info": "Concatinates all files in the array into a string.",
+//     "example": [
+//         "let files = ['file1.js','file2.js']",
+//         "concatFiles(arr)"
+//     ]
+// } JSODOC
 function concatFiles(filesArray) {
     let out = "";
 

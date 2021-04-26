@@ -55,11 +55,58 @@ const log = aftc.log;
 
 
 
+// JSODOC = {
+//     "method": "isFile",
+//     "params": [
+//         {
+//             "name": "path",
+//             "type": "String",
+//             "required": true,
+//             "info": "Path you want to check is a file."
+//         }
+//     ],
+//     "returns": {
+//         "type": "Boolean"
+//     },
+//     "info": "Checks if path is a file.",
+//     "example": [
+//         "if ( isFile('./file1.js') ){",
+//         "\tlog('Its a file!')",
+//         "} else {",
+//         "\tlog('That aint no file!')",
+//         "}"
+//     ]
+// } JSODOC
 function isFile(path) {
     var stats = fs.statSync(path);
     return stats.isFile();
 }
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+
+// JSODOC = {
+//     "method": "isDir",
+//     "params": [
+//         {
+//             "name": "path",
+//             "type": "String",
+//             "required": true,
+//             "info": "Path you want to check is a directory."
+//         }
+//     ],
+//     "returns": {
+//         "type": "Boolean"
+//     },
+//     "info": "Checks if path is a directory.",
+//     "example": [
+//         "if ( isDir('./mydir') ){",
+//         "\tlog('It exists!')",
+//         "} else {",
+//         "\tlog('Nooooo!')",
+//         "}"
+//     ]
+// } JSODOC
 
 function isDir(path) {
     var stats = fs.statSync(path);
@@ -71,7 +118,46 @@ function isDir(path) {
 
 
 
-
+// JSODOC = {
+//     "method": "getFilesSync",
+//     "params": [
+//         {
+//             "name": "dir",
+//             "type": "Array",
+//             "required": true,
+//             "default": null,
+//             "info": "Directory."
+//         },
+//         {
+//             "name": "ext",
+//             "type": "String",
+//             "required": true,
+//             "default": "*",
+//             "info": "Array of files."
+//         },
+//         {
+//             "name": "recurse",
+//             "type": "Boolean",
+//             "required": false,
+//             "default": false,
+//             "info": "Array of files."
+//         },
+//         {
+//             "name": "includeHidden",
+//             "type": "Boolean",
+//             "required": false,
+//             "default": false,
+//             "info": "Array of files."
+//         }
+//     ],
+//     "returns": {
+//         "type": "Array"
+//     },
+//     "info": "Gets an array of files in a directory. Hidden files start with a . (linux style, not windows)",
+//     "example": [
+//         "let files = getFilesSync('./src', '.js', true);"
+//     ]
+// } JSODOC
 function getFilesSync(dir, ext = "*", recurse = false, includeHidden = false) {
 
     ext = ext.toLowerCase();
@@ -138,12 +224,33 @@ function getFilesSync(dir, ext = "*", recurse = false, includeHidden = false) {
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
-function writeFile(dir, data) {
-    fs.writeFile(dir, data, function (err) {
+
+
+// JSODOC = {
+//     "method": "writeFile",
+//     "params": [
+//         {
+//             "name": "filePath",
+//             "type": "String",
+//             "required": true,
+//             "info": "Path to file you want to write to (will create it if it doesnt exist)."
+//         }
+//     ],
+//     "returns": {
+//         "type": "Boolean"
+//     },
+//     "info": "Writes data to a file.",
+//     "example": [
+//         "let data = 'hello world';",
+//         "writeFile('./test.txt',data);"
+//     ]
+// } JSODOC
+function writeFile(filePath, data) {
+    fs.writeFile(filePath, data, function (err) {
         if (err) {
             throw err;
         } else {
-            return data
+            return true
         }
     });
 }
@@ -151,6 +258,32 @@ function writeFile(dir, data) {
 
 
 
+
+// JSODOC = {
+//     "method": "promiseWriteFile",
+//     "params": [
+//         {
+//             "name": "filePath",
+//             "type": "String",
+//             "required": true,
+//             "info": "Path to file you want to write to (will create it if it doesnt exist)."
+//         }
+//     ],
+//     "returns": {
+//         "type": "Promise"
+//     },
+//     "info": "Writes data to a file but returns a promise.",
+//     "example": [
+//     "let data = 'hello world';",
+//     "writeFile('./test.txt', data)",
+//     "   .then(() => {",
+//     "       log('success')",
+//     "   });",
+//     "   .catch(() => {",
+//     "       log('failure')",
+//     "   });"
+//     ]
+// } JSODOC
 function promiseWriteFile(dir, data) {
     return new Promise((resolve, reject) => {
         fs.writeFile(dir, data, function (err) {
@@ -158,7 +291,7 @@ function promiseWriteFile(dir, data) {
                 reject(err);
                 throw err;
             } else {
-                resolve()
+                resolve(true)
             }
         });
     })
@@ -167,8 +300,26 @@ function promiseWriteFile(dir, data) {
 
 
 
-function readFileToString(file) {
-    return fs.readFileSync(file, 'utf8');
+// JSODOC = {
+//     "method": "readFileToString",
+//     "params": [
+//         {
+//             "name": "filePath",
+//             "type": "String",
+//             "required": true,
+//             "info": "Path to file you want read."
+//         }
+//     ],
+//     "returns": {
+//         "type": "String"
+//     },
+//     "info": "Returns a file as a string.",
+//     "example": [
+//         "let data = readFileToString('./test.txt');"
+//     ]
+// } JSODOC
+function readFileToString(filePath) {
+    return fs.readFileSync(filePath, 'utf8');
 }
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
