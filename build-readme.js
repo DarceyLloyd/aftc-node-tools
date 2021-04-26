@@ -2,7 +2,7 @@ const { log, cls, getFilesSync, readFileToString, writeFile } = require("aftc-no
 const { jsoGetDocs } = require("jsodoc");
 const version = require("./package.json").version;
 
-cls();
+// cls();
 log("JSODOC: Starting build process...".green);
 
 let files = getFilesSync("./src", ".js", true);

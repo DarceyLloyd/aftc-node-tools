@@ -19,10 +19,13 @@ cls();
 let data = getExports()
 // log(data);
 
+log("Building aftc-node-tools".green);
 
 promiseWriteFile("./aftc-node-tools.js", data)
     .then(() => {
         log("aftc-node-tools.js generated".green);
+
+        require("./build-readme")
     })
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
