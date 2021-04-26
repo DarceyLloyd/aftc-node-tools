@@ -22,6 +22,7 @@ module.exports = {
 	readFileToString:io.readFileToString,
 	getJSOCommentFromString:jsodoc.getJSOCommentFromString,
 	generateJSODocs:jsodoc.generateJSODocs,
+	getJSOQuickList:jsodoc.getJSOQuickList,
 	isEven:math.isEven,
 	isOdd:math.isOdd,
 	roundTo:math.roundTo,

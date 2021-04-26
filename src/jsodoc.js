@@ -99,14 +99,29 @@ function generateJSODocs(comments) {
 
     comments.forEach(comment => {
         let j = JSON.parse(comment)
+        // log(j.method);
         readme += jsoDocGetTitle(j)
         readme += jsoDocGetInfo(j)
         readme += jsoDocGetParams(j)
+        readme += jsoDocGetRetuns(j)
         readme += jsoDocGetExample(j)
-        readme += "<hr><br><br>"
+        readme += "<hr><br><br>\n\n"
     })
 
     return readme;
+}
+// - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+let jsoDocGetRetuns = (data) => {
+    let str = "";
+
+    if (data.hasOwnProperty("returns")) {
+        if (!data.returns == ""){
+            str += "Returns:\n" + data.returns + "<br>\n";
+        }   
+    }
+
+    return str;
 }
 // - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -123,7 +138,6 @@ let jsoDocGetExample = (data) => {
 
     return str;
 }
-
 // - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 let jsoDocGetInfo = (data) => {
@@ -147,21 +161,22 @@ let jsoDocGetParams = (data) => {
         data.params.forEach(param => {
             str += "- "
             if (param.hasOwnProperty("name")) {
-                str += "<b>Name:</b> " + param["name"] + "<br>\n"
+                // str += "<b>Name:</b> " + param["name"] + "<br>\n"
+                str += "<b>" + param["name"] + "</b><br>\n"
             }
             if (param.hasOwnProperty("type")) {
-                str += "<b>Type:</b> " + param["type"] + "<br>\n"
+                str += "<b>Type: </b>" + param["type"] + "<br>\n"
             }
             if (param.hasOwnProperty("required")) {
-                str += "<b>Required:</b> " + param["required"] + "<br>\n"
+                str += "<b>Required: </b>" + param["required"] + "<br>\n"
             }
             if (param.hasOwnProperty("default")) {
-                str += "<b>Default:</b> " + param["default"] + "<br>\n"
+                str += "<b>Default: </b>" + param["default"] + "<br>\n"
             }
             if (param.hasOwnProperty("info")) {
-                str += "<b>Info:</b> " + param["info"]
+                str += "<b>Info: </b>" + param["info"] + "<br>\n"
             }
-            str += "\n<br><br>\n";
+            str += "\n";
 
         })
         return str
@@ -178,11 +193,11 @@ let jsoDocGetTitle = (data) => {
     let isMethod = data.hasOwnProperty("method");
 
     if (!isClass && !isMethod) {
-        title = "### JSODOC ERROR Parsing: " + comment
+        title = "## JSODOC ERROR Parsing: " + comment
     } else if (isClass) {
-        title = "### <b>" + data.class + jsoDocGetTitleParams(data) + "</b>\n";
+        title = "## <b>" + data.class + jsoDocGetTitleParams(data) + "</b>\n";
     } else if (isMethod) {
-        title = "### <b>" + data.method + jsoDocGetTitleParams(data) + "</b>\n";
+        title = "## <b>" + data.method + jsoDocGetTitleParams(data) + "</b>\n";
     }
 
     return title;
@@ -216,6 +231,30 @@ let jsoDocGetTitleParams = (data) => {
 // - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
+
+const getJSOQuickList = function(comments){
+    let out = "";
+
+    comments.forEach(comment => {
+        let j = JSON.parse(comment)
+        
+        let entry = "";
+        if (j.hasOwnProperty("method")){
+            entry = "<b>" + j.method + "</b>" + jsoDocGetTitleParams(j);
+        } else if (j.hasOwnProperty("class")){
+            entry = j.class;
+        }
+        
+        out += "- " + entry + "\n";
+    })
+
+    return out;
+}
+// - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+
+
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -228,6 +267,7 @@ let jsoDocGetTitleParams = (data) => {
 
 module.exports = {
     getJSOCommentFromString,
-    generateJSODocs
+    generateJSODocs,
+    getJSOQuickList
 }
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
