@@ -1,4 +1,4 @@
-# <b>AFTC NODE TOOLS v0.7.3</b>
+# <b>AFTC NODE TOOLS v0.7.4</b>
 ### <b>A collection of tools/utilities that I find useful when working with node.</b>
 <br>
 
@@ -40,7 +40,7 @@
 
 <hr><br><br>
 
-# <b>Documentation (coming soon)</b>
+# <b>Documentation</b>
 
 ## <b>enableLog()</b>
 <b>Information:</b><br>

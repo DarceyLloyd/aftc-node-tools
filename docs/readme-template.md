@@ -12,7 +12,7 @@
 
 <hr><br><br>
 
-# <b>Documentation (coming soon)</b>
+# <b>Documentation</b>
 
 [[docs]]
 
