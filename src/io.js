@@ -59,7 +59,7 @@ const log = aftc.log;
 //     "method": "isFile",
 //     "params": [
 //         {
-//             "name": "path",
+//             "name": "filePath",
 //             "type": "String",
 //             "required": true,
 //             "info": "Path you want to check is a file."
@@ -77,9 +77,31 @@ const log = aftc.log;
 //         "}"
 //     ]
 // } JSODOC
-function isFile(path) {
-    var stats = fs.statSync(path);
-    return stats.isFile();
+function isFile(filePath) {
+    // var stats = fs.statSync(filePath);
+    // return stats.isFile();
+    try {
+        return fs.lstatSync(path).isFile()
+
+        // console.log(`Is file: ${stats.isFile()}`);
+        // console.log(`Is directory: ${stats.isDirectory()}`);
+        // console.log(`Is symbolic link: ${stats.isSymbolicLink()}`);
+        // console.log(`Is FIFO: ${stats.isFIFO()}`);
+        // console.log(`Is socket: ${stats.isSocket()}`);
+        // console.log(`Is character device: ${stats.isCharacterDevice()}`);
+        // console.log(`Is block device: ${stats.isBlockDevice()}`);
+
+    } catch (e) {
+        // Handle error
+        // if (e.code == 'ENOENT') {
+        //     //no such file or directory
+        // } else {
+
+        // }
+        // console.log(e)
+        return false
+    }
+
 }
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -116,7 +138,7 @@ function isDir(dir) {
         // if (e.code == 'ENOENT') {
         //     //no such file or directory
         // } else {
-            
+
         // }
         // console.log(e)
         return false

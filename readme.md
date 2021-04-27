@@ -1,4 +1,4 @@
-# <b>AFTC NODE TOOLS v0.7.9</b>
+# <b>AFTC NODE TOOLS v0.7.10</b>
 ### <b>A collection of tools/utilities that I find useful when working with node.</b>
 <br>
 
@@ -13,7 +13,7 @@
  - log()
  - cls()
  - concatFiles(filesArray)
- - isFile(path)
+ - isFile(filePath)
  - isDir(dir)
  - getFilesSync(dir,ext,recurse,includeHidden)
  - writeFile(filePath)
@@ -112,11 +112,11 @@ concatFiles(arr)
 
 <hr><br><br>
 
-## <b>isFile(path)</b>
+## <b>isFile(filePath)</b>
 <b>Information:</b><br>
 Checks if path is a file.<br>
 #### <b>Parameters:</b>
-- <b>Name:</b> path<br>
+- <b>Name:</b> filePath<br>
 <b>Type: </b>String<br>
 <b>Required: </b>true<br>
 <b>Info: </b>Path you want to check is a file.<br>
