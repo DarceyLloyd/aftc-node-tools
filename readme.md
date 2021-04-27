@@ -1,4 +1,4 @@
-# <b>AFTC NODE TOOLS v0.7.7</b>
+# <b>AFTC NODE TOOLS v0.7.8</b>
 ### <b>A collection of tools/utilities that I find useful when working with node.</b>
 <br>
 
@@ -23,6 +23,7 @@
  - isEven(n)
  - isOdd(n)
  - roundTo(v,dec)
+ - parseObjectToObject(source,target,strict)
  - cutStringTo(s,len)
  - escapeHTML(str)
  - getCleanJSONString(str)
@@ -326,6 +327,37 @@ Rounds a number to a specific amount of decimal places.<br>
 Number<br>
 ```
 let v = roundTo(3.142,1);
+```
+
+
+<hr><br><br>
+
+## <b>parseObjectToObject(source,target,strict)</b>
+<b>Information:</b><br>
+Parse an object into another object (good for processing arguments dynamically with strict on).<br>
+#### <b>Parameters:</b>
+- <b>Name:</b> source<br>
+<b>Type: </b>Object<br>
+<b>Required: </b>true<br>
+<b>Info: </b>The source object to pull values from.<br>
+
+- <b>Name:</b> target<br>
+<b>Type: </b>Object<br>
+<b>Required: </b>true<br>
+<b>Info: </b>The target object to push values into.<br>
+
+- <b>Name:</b> strict<br>
+<b>Type: </b>Boolean<br>
+<b>Required: </b>false<br>
+<b>Info: </b>To only parse indexes/params that exist in both objects.<br>
+
+<b>Returns:</b>
+Boolean<br>
+```
+let args = {
+	a:4
+}
+parseObjectToObject(arguments[0],args,true);
 ```
 
 

@@ -3,6 +3,7 @@ const file = require('./src/file.js')
 const io = require('./src/io.js')
 const is = require('./src/is.js')
 const math = require('./src/math.js')
+const parse = require('./src/parse.js')
 const random = require('./src/random.js')
 const string = require('./src/string.js')
 const validation = require('./src/validation.js')
@@ -24,6 +25,7 @@ module.exports = {
 	isEven:math.isEven,
 	isOdd:math.isOdd,
 	roundTo:math.roundTo,
+	parseObjectToObject:parse.parseObjectToObject,
 	getRandomBoolean:random.getRandomBoolean,
 	getRandomFloat:random.getRandomFloat,
 	getRandomInt:random.getRandomInt,
