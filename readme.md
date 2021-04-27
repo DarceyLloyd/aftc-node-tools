@@ -1,4 +1,4 @@
-# <b>AFTC NODE TOOLS v0.7.8</b>
+# <b>AFTC NODE TOOLS v0.7.9</b>
 ### <b>A collection of tools/utilities that I find useful when working with node.</b>
 <br>
 
@@ -14,7 +14,7 @@
  - cls()
  - concatFiles(filesArray)
  - isFile(path)
- - isDir(path)
+ - isDir(dir)
  - getFilesSync(dir,ext,recurse,includeHidden)
  - writeFile(filePath)
  - promiseWriteFile(filePath)
@@ -134,11 +134,11 @@ if ( isFile('./file1.js') ){
 
 <hr><br><br>
 
-## <b>isDir(path)</b>
+## <b>isDir(dir)</b>
 <b>Information:</b><br>
 Checks if path is a directory.<br>
 #### <b>Parameters:</b>
-- <b>Name:</b> path<br>
+- <b>Name:</b> dir<br>
 <b>Type: </b>String<br>
 <b>Required: </b>true<br>
 <b>Info: </b>Path you want to check is a directory.<br>

@@ -89,7 +89,7 @@ function isFile(path) {
 //     "method": "isDir",
 //     "params": [
 //         {
-//             "name": "path",
+//             "name": "dir",
 //             "type": "String",
 //             "required": true,
 //             "info": "Path you want to check is a directory."
@@ -108,23 +108,19 @@ function isFile(path) {
 //     ]
 // } JSODOC
 
-function isDir(path) {
-    // var stats = fs.statSync(path);
-    // return stats.isDirectory();
-
+function isDir(dir) {
     try {
-        return fs.lstatSync("/some/path").isDirectory()
+        return fs.lstatSync(dir).isDirectory()
     } catch (e) {
         // Handle error
-        if (e.code == 'ENOENT') {
-            //no such file or directory
-            //do something
-        } else {
-            //do something else
-        }
+        // if (e.code == 'ENOENT') {
+        //     //no such file or directory
+        // } else {
+            
+        // }
+        // console.log(e)
         return false
     }
-
 }
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 

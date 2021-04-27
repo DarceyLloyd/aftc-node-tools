@@ -1,6 +1,6 @@
 {
   "name": "aftc-node-tools",
-  "version": "0.7.8",
+  "version": "0.7.9",
   "description": "",
   "main": "aftc-node-tools.js",
   "scripts": {
