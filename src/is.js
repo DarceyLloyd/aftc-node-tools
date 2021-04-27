@@ -1,10 +1,3 @@
-const aftc = require("aftc-node-tools")
-const cls = aftc.cls
-const log = aftc.log
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-
-
 // JSODOC = {
 //     "method": "isArray",
 //     "params": [

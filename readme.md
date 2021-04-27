@@ -1,4 +1,4 @@
-# <b>AFTC NODE TOOLS v0.7.6</b>
+# <b>AFTC NODE TOOLS v0.7.7</b>
 ### <b>A collection of tools/utilities that I find useful when working with node.</b>
 <br>
 
