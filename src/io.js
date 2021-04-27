@@ -81,7 +81,7 @@ function isFile(filePath) {
     // var stats = fs.statSync(filePath);
     // return stats.isFile();
     try {
-        return fs.lstatSync(path).isFile()
+        return fs.lstatSync(filePath).isFile()
 
         // console.log(`Is file: ${stats.isFile()}`);
         // console.log(`Is directory: ${stats.isDirectory()}`);
