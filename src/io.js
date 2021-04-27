@@ -109,8 +109,22 @@ function isFile(path) {
 // } JSODOC
 
 function isDir(path) {
-    var stats = fs.statSync(path);
-    return stats.isDirectory();
+    // var stats = fs.statSync(path);
+    // return stats.isDirectory();
+
+    try {
+        return fs.lstatSync("/some/path").isDirectory()
+    } catch (e) {
+        // Handle error
+        if (e.code == 'ENOENT') {
+            //no such file or directory
+            //do something
+        } else {
+            //do something else
+        }
+        return false
+    }
+
 }
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 

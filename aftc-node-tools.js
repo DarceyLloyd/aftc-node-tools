@@ -1,6 +1,7 @@
 const debug = require('./src/debug.js')
 const file = require('./src/file.js')
 const io = require('./src/io.js')
+const is = require('./src/is.js')
 const math = require('./src/math.js')
 const random = require('./src/random.js')
 const string = require('./src/string.js')
@@ -19,6 +20,7 @@ module.exports = {
 	writeFile:io.writeFile,
 	promiseWriteFile:io.promiseWriteFile,
 	readFileToString:io.readFileToString,
+	isArray:is.isArray,
 	isEven:math.isEven,
 	isOdd:math.isOdd,
 	roundTo:math.roundTo,

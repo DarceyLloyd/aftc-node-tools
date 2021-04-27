@@ -1,4 +1,4 @@
-# <b>AFTC NODE TOOLS v0.7.4</b>
+# <b>AFTC NODE TOOLS v0.7.5</b>
 ### <b>A collection of tools/utilities that I find useful when working with node.</b>
 <br>
 
@@ -19,6 +19,7 @@
  - writeFile(filePath)
  - promiseWriteFile(filePath)
  - readFileToString(filePath)
+ - isArray(input)
  - isEven(n)
  - isOdd(n)
  - roundTo(v,dec)
@@ -248,6 +249,24 @@ Returns a file as a string.<br>
 String<br>
 ```
 let data = readFileToString('./test.txt');
+```
+
+
+<hr><br><br>
+
+## <b>isArray(input)</b>
+<b>Information:</b><br>
+Detects if the supplied variable is an array or not (instance of returns object).<br>
+#### <b>Parameters:</b>
+- <b>Name:</b> input<br>
+<b>Type: </b>*<br>
+<b>Required: </b>true<br>
+<b>Info: </b>The variable to check.<br>
+
+<b>Returns:</b>
+Boolean<br>
+```
+let varIsArray = isArray(3);
 ```
 
 
