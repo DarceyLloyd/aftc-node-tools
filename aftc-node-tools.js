@@ -22,6 +22,7 @@ module.exports = {
 	promiseWriteFile:io.promiseWriteFile,
 	readFileToString:io.readFileToString,
 	isArray:is.isArray,
+	isObject:is.isObject,
 	isEven:math.isEven,
 	isOdd:math.isOdd,
 	roundTo:math.roundTo,

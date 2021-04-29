@@ -1,4 +1,4 @@
-# <b>AFTC NODE TOOLS v0.7.10</b>
+# <b>AFTC NODE TOOLS v0.7.12</b>
 ### <b>A collection of tools/utilities that I find useful when working with node.</b>
 <br>
 
@@ -20,6 +20,7 @@
  - promiseWriteFile(filePath)
  - readFileToString(filePath)
  - isArray(input)
+ - isObject(a)
  - isEven(n)
  - isOdd(n)
  - roundTo(v,dec)
@@ -268,6 +269,24 @@ Detects if the supplied variable is an array or not (instance of returns object)
 Boolean<br>
 ```
 let varIsArray = isArray(3);
+```
+
+
+<hr><br><br>
+
+## <b>isObject(a)</b>
+<b>Information:</b><br>
+Detects if the supplied variable is an object or not.<br>
+#### <b>Parameters:</b>
+- <b>Name:</b> a<br>
+<b>Type: </b>*<br>
+<b>Required: </b>true<br>
+<b>Info: </b>The variable to check.<br>
+
+<b>Returns:</b>
+Boolean<br>
+```
+let varIsObj = isObject(3);
 ```
 
 
