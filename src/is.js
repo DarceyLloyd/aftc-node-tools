@@ -24,7 +24,32 @@ function isArray(input) {
 
 
 
+// JSODOC = {
+//     "method": "isObject",
+//     "params": [
+//         {
+//             "name": "a",
+//             "type": "*",
+//             "required": true,
+//             "info": "The variable to check."
+//         }
+//     ],
+//     "returns": {
+//         "type": "Boolean"
+//     },
+//     "info": "Detects if the supplied variable is an object or not.",
+//     "example": [
+//         "let varIsObj = isObject(3);"
+//     ]
+// } JSODOC
+function isObject(a) {
+    return (!!a) && (a.constructor === Object);
+};
+
+
+
 module.exports = {
-    isArray
+    isArray,
+    isObject
 }
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
