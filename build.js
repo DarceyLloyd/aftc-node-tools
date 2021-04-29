@@ -25,7 +25,12 @@ promiseWriteFile("./aftc-node-tools.js", data)
     .then(() => {
         log("aftc-node-tools.js generated".green);
 
-        require("./build-readme")
+
+        setTimeout(()=>{
+            require("./build-readme")
+        },1000)
+
+
     })
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
