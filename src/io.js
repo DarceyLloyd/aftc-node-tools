@@ -278,13 +278,16 @@ function getFilesSync(dir, ext = "*", recurse = false, includeHidden = false) {
 //     ]
 // } JSODOC
 function writeFile(filePath, data) {
-    fs.writeFile(filePath, data, function (err) {
-        if (err) {
-            throw err;
-        } else {
-            return true
-        }
-    });
+    new Promise((resolve, reject) => {
+        fs.writeFile(filePath, data, function (err) {
+            if (err) {
+                reject(err)
+                // throw err;
+            } else {
+                resolve(true)
+            }
+        });
+    })
 }
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -644,6 +647,3 @@ module.exports = {
 //     });
 // }
 // // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-
-
