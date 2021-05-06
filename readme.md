@@ -1,4 +1,4 @@
-# <b>AFTC NODE TOOLS v0.7.16</b>
+# <b>AFTC NODE TOOLS v0.7.17</b>
 ### <b>A collection of tools/utilities that I find useful when working with node.</b>
 <br>
 
@@ -204,10 +204,11 @@ Writes data to a file.<br>
 <b>Info: </b>Path to file you want to write to (will create it if it doesnt exist).<br>
 
 <b>Returns:</b>
-Boolean<br>
+Promise<br>
 ```
-let data = 'hello world';
-writeFile('./test.txt',data);
+let data = 'hello world'
+writeFile('./test.txt',data)
+.then((res)=>{ console.log('complete')} )
 ```
 
 

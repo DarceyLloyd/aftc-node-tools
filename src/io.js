@@ -269,17 +269,18 @@ function getFilesSync(dir, ext = "*", recurse = false, includeHidden = false) {
 //         }
 //     ],
 //     "returns": {
-//         "type": "Boolean"
+//         "type": "Promise"
 //     },
 //     "info": "Writes data to a file.",
 //     "example": [
-//         "let data = 'hello world';",
-//         "writeFile('./test.txt',data);"
+//         "let data = 'hello world'",
+//         "writeFile('./test.txt',data)",
+//         ".then((res)=>{ console.log('complete')} )"
 //     ]
 // } JSODOC
 function writeFile(filePath, data) {
-    new Promise((resolve, reject) => {
-        fs.writeFile(filePath, data, function (err) {
+    return new Promise((resolve, reject) => {
+        fs.writeFile(filePath, data, (err)=> {
             if (err) {
                 reject(err)
                 // throw err;
